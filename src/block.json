@@ -1,0 +1,61 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "simple-modal/modal",
+	"version": "1.0.0",
+	"title": "Simple Modal",
+	"category": "design",
+	"description": "A simple modal block that can be triggered by a button.",
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "20px",
+				"right": "20px",
+				"bottom": "20px",
+				"left": "20px"
+			}
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": "#ffffff"
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#000000"
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": "4px"
+		},
+		"maxWidth": {
+			"type": "string",
+			"default": "90%"
+		},
+		"showInEditor": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "simple-modal",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./index.css",
+	"viewScript": "file:./frontend.js"
+} 
