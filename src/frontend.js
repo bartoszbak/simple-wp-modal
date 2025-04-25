@@ -11,6 +11,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Create a map of modal IDs to their corresponding modal elements
     const modalMap = new Map();
     
+    // Function to handle URL hash for direct modal opening
+    const handleHash = () => {
+        const hash = window.location.hash.substring(1); // Remove the # symbol
+        if (hash && modalMap.has(hash)) {
+            console.log('Simple Modal: Opening modal from URL hash:', hash);
+            const modal = modalMap.get(hash);
+            // Small delay to ensure proper rendering
+            setTimeout(() => {
+                const modalContent = modal.querySelector('.simple-modal-content');
+                
+                // Reset any existing animation classes
+                modal.classList.remove('closing', 'active');
+                modalContent.classList.remove('closing', 'active');
+                
+                // Show modal and prepare for animation
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                modal.setAttribute('aria-hidden', 'false');
+                
+                // Trigger reflow
+                modal.offsetHeight;
+                
+                // Start entrance animation
+                requestAnimationFrame(() => {
+                    modal.classList.add('active');
+                    modalContent.classList.add('active');
+                });
+                
+                activeModal = modal;
+            }, 100);
+        }
+    };
+    
     // Single Escape key handler for all modals
     const handleEscapeKey = (e) => {
         if (e.key === 'Escape' && activeModal) {
@@ -24,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     modals.forEach(modal => {
         const modalId = modal.getAttribute('id');
+        const closeOnOutsideClick = modal.getAttribute('data-close-on-outside-click') === 'true';
+        
         if (modalId) {
             modalMap.set(modalId, modal);
         }
@@ -42,13 +77,16 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal(modal);
         });
 
-        // Close modal when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                console.log('Simple Modal: Clicked outside modal');
-                closeModal(modal);
-            }
-        });
+        // Close modal when clicking outside (only if closeOnOutsideClick is true)
+        if (closeOnOutsideClick) {
+            const overlay = modal.querySelector('.simple-modal-overlay');
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    console.log('Simple Modal: Clicked outside modal');
+                    closeModal(modal);
+                }
+            });
+        }
 
         // Function to close modal with animation
         const closeModal = (modal) => {
@@ -125,9 +163,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Check hash on page load and handle hash changes
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    
     // Cleanup function to remove event listeners when needed
     const cleanup = () => {
         document.removeEventListener('keydown', handleEscapeKey);
+        window.removeEventListener('hashchange', handleHash);
     };
     
     // Clean up event listeners when the page is unloaded

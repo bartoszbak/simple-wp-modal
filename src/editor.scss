@@ -2,6 +2,25 @@
     margin-bottom: 0 !important;
 }
 
+.simple-modal-preview-placeholder {
+    padding: 20px;
+    background: #f0f0f0;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    text-align: center;
+
+    p {
+        margin: 0;
+        color: #666;
+    }
+
+    .simple-modal-preview-description {
+        font-size: 0.9em;
+        margin-top: 8px !important;
+        color: #999;
+    }
+}
+
 .editor-styles-wrapper .wp-block-simple-modal-modal {
     .simple-modal-editor-preview {
         position: relative;
@@ -19,7 +38,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999999;
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,6 +94,10 @@
     }
 }
 
+.height-fix{
+    height: auto !important;
+}
+
 .components-base-control {
     margin-bottom: 16px;
 
@@ -84,12 +107,69 @@
     }
 }
 
+.border-radius-control{
+    .components-base-control{
+        margin-bottom: 0 !important ;
+    }
+}
+
+.border-control{
+    div{
+        height: auto !important;
+    
+        .components-input-control{
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+.modal-url-control{
+    position: relative;
+
+    input{
+        height: 40px !important;
+        padding-right: 44px;
+    }
+    .components-button.has-icon{
+        background: #f0f0f1;
+        height: auto;
+        margin: 0 !important;
+        min-width: 26px;
+        padding: 3px;
+        position: absolute;
+        right: 8px;
+        top: 30px;
+
+        svg{
+            width: 20px !important;
+            height: 20px !important;
+        }
+    }
+}
+
+.background-color-control{
+    label{
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: calc(8px);
+        padding: 0px;
+    }
+}
+
+.padding-control{
+    .components-base-control{
+        margin-bottom: 0 !important ;
+    }
+}
+
 .components-color-picker {
     margin-top: 8px;
     
     .components-color-picker__input {
         width: 100%;
-        height: 30px;
         padding: 0;
         border: 1px solid #8c8f94;
         border-radius: 4px;

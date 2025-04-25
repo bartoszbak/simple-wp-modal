@@ -8,7 +8,8 @@
 	"description": "A simple modal block that can be triggered by a button.",
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"]
+		"align": ["wide", "full"],
+		"anchor": true
 	},
 	"attributes": {
 		"id": {
@@ -51,11 +52,18 @@
 		"showInEditor": {
 			"type": "boolean",
 			"default": false
+		},
+		"closeOnOutsideClick": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "simple-modal",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./index.css",
-	"viewScript": "file:./frontend.js"
+	"viewScript": "file:./frontend.js",
+	"listView": {
+		"attributes": ["id", "title"]
+	}
 } 

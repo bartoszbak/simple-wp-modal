@@ -12,6 +12,7 @@ export default function Save({ attributes }) {
         borderRadius,
         borderWidth,
         maxWidth,
+        closeOnOutsideClick,
     } = attributes;
 
     const blockProps = useBlockProps.save();
@@ -20,8 +21,8 @@ export default function Save({ attributes }) {
         backgroundColor,
         borderColor,
         borderRadius,
-        borderWidth: borderWidth ? `${borderWidth}px` : '0',
-        borderStyle: borderWidth > 0 ? 'solid' : 'none',
+        borderWidth: borderWidth ? `${borderWidth}px` : undefined,
+        borderStyle: borderWidth ? 'solid' : undefined,
         maxWidth: maxWidth ? maxWidth : '90%',
         padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`,
     };
@@ -31,6 +32,7 @@ export default function Save({ attributes }) {
             <div 
                 className="simple-modal" 
                 id={id}
+                data-close-on-outside-click={closeOnOutsideClick}
             >
                 <div className="simple-modal-overlay">
                     <div className="simple-modal-content" style={modalContentStyle}>
