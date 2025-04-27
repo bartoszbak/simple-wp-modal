@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Simple Modal
- * Description: A simple modal block for the WordPress block editor.
+ * Plugin Name: Gutenberg Modal Block
+ * Description: A simple modal block for the WordPress block editor that can be triggered by a button or URL.
  * Version: 1.0.0
- * Author: Your Name
+ * Author: BB
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: simple-modal

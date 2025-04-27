@@ -4,8 +4,8 @@ const path = require('path');
 module.exports = {
     ...defaultConfig,
     entry: {
-        index: path.resolve(process.cwd(), 'src', 'index.js'),
-        frontend: path.resolve(process.cwd(), 'src', 'frontend.js'),
+        index: path.resolve(process.cwd(), 'src', 'editor', 'editor.js'),
+        frontend: path.resolve(process.cwd(), 'src', 'frontend', 'frontend.js'),
     },
     output: {
         path: path.resolve(process.cwd(), 'build'),

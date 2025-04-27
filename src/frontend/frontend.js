@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     modals.forEach(modal => {
         const modalId = modal.getAttribute('id');
         const closeOnOutsideClick = modal.getAttribute('data-close-on-outside-click') === 'true';
+        const customCloseButtonId = modal.getAttribute('data-custom-close-button');
         
         if (modalId) {
             modalMap.set(modalId, modal);
@@ -71,11 +72,26 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.setAttribute('aria-modal', 'true');
         modal.setAttribute('aria-labelledby', `${modalId}-title`);
         
-        // Close modal when clicking the close button
-        closeButton.addEventListener('click', () => {
-            console.log('Simple Modal: Close button clicked');
-            closeModal(modal);
-        });
+        // Close modal when clicking the default close button
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                console.log('Simple Modal: Close button clicked');
+                closeModal(modal);
+            });
+        }
+
+        // Set up custom close button if specified
+        if (customCloseButtonId) {
+            const customCloseButton = document.getElementById(customCloseButtonId);
+            if (customCloseButton) {
+                customCloseButton.addEventListener('click', () => {
+                    console.log('Simple Modal: Custom close button clicked');
+                    closeModal(modal);
+                });
+            } else {
+                console.warn(`Simple Modal: Custom close button with ID "${customCloseButtonId}" not found`);
+            }
+        }
 
         // Close modal when clicking outside (only if closeOnOutsideClick is true)
         if (closeOnOutsideClick) {
@@ -175,4 +191,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Clean up event listeners when the page is unloaded
     window.addEventListener('unload', cleanup);
-}); 
+});
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    const header = modal.querySelector('.simple-modal-header');
+    const title = modal.querySelector('.simple-modal-title');
+    
+    // Add titleless class if there's no title
+    if (!title) {
+        header.classList.add('titleless');
+    }
+
+    modal.classList.add('simple-modal-open');
+    document.body.style.overflow = 'hidden';
+} 

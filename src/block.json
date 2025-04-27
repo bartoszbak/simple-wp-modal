@@ -3,9 +3,9 @@
 	"apiVersion": 3,
 	"name": "simple-modal/modal",
 	"version": "1.0.0",
-	"title": "Simple Modal",
+	"title": "Modal Block",
 	"category": "design",
-	"description": "A simple modal block that can be triggered by a button.",
+	"description": "A simple modal block that can be triggered by a button or URL.",
 	"supports": {
 		"html": false,
 		"align": ["wide", "full"],
@@ -56,6 +56,14 @@
 		"closeOnOutsideClick": {
 			"type": "boolean",
 			"default": true
+		},
+		"useCustomCloseButton": {
+			"type": "boolean",
+			"default": false
+		},
+		"customCloseButtonId": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "simple-modal",
